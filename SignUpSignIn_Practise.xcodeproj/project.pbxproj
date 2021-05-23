@@ -18,6 +18,7 @@
 		2DA268E62656DFB30039CC1B /* LoginVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA268E52656DFB30039CC1B /* LoginVc.swift */; };
 		2DA268EB2656DFC20039CC1B /* SignUpVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA268EA2656DFC20039CC1B /* SignUpVc.swift */; };
 		2DA268F02656DFCE0039CC1B /* HomeVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA268EF2656DFCE0039CC1B /* HomeVc.swift */; };
+		2DB11C16265ABCFB00449653 /* DecodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB11C15265ABCFB00449653 /* DecodeFile.swift */; };
 		2DB3AFF826596DF500C6EB61 /* ProfileDetailVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3AFF726596DF500C6EB61 /* ProfileDetailVc.swift */; };
 		2DBCD69E2659FFE400D65D40 /* ProfilePhotoViewVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBCD69D2659FFE400D65D40 /* ProfilePhotoViewVc.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		2DA268E52656DFB30039CC1B /* LoginVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVc.swift; sourceTree = "<group>"; };
 		2DA268EA2656DFC20039CC1B /* SignUpVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVc.swift; sourceTree = "<group>"; };
 		2DA268EF2656DFCE0039CC1B /* HomeVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVc.swift; sourceTree = "<group>"; };
+		2DB11C15265ABCFB00449653 /* DecodeFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeFile.swift; sourceTree = "<group>"; };
 		2DB3AFF726596DF500C6EB61 /* ProfileDetailVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailVc.swift; sourceTree = "<group>"; };
 		2DBCD69D2659FFE400D65D40 /* ProfilePhotoViewVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewVc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 				2DA268EF2656DFCE0039CC1B /* HomeVc.swift */,
 				2DB3AFF726596DF500C6EB61 /* ProfileDetailVc.swift */,
 				2DBCD69D2659FFE400D65D40 /* ProfilePhotoViewVc.swift */,
+				2DB11C15265ABCFB00449653 /* DecodeFile.swift */,
 			);
 			path = SignUpSignIn_Practise;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				2DA268B72656D6C60039CC1B /* SignUpSignIn_Practise.xcdatamodeld in Sources */,
 				2DBCD69E2659FFE400D65D40 /* ProfilePhotoViewVc.swift in Sources */,
 				2DA268E62656DFB30039CC1B /* LoginVc.swift in Sources */,
+				2DB11C16265ABCFB00449653 /* DecodeFile.swift in Sources */,
 				2DA268F02656DFCE0039CC1B /* HomeVc.swift in Sources */,
 				2DA268EB2656DFC20039CC1B /* SignUpVc.swift in Sources */,
 				2DA268AF2656D6C60039CC1B /* SceneDelegate.swift in Sources */,
