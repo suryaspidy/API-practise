@@ -136,7 +136,7 @@
         <!--Home-->
         <scene sceneID="qyU-KK-iLV">
             <objects>
-                <viewController id="KkA-kr-ZXv" customClass="HomeVc" customModule="SignUpSignIn_Practise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homePage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KkA-kr-ZXv" customClass="HomeVc" customModule="SignUpSignIn_Practise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eeO-Dh-mrw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,6 +144,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="ZNd-qe-DOQ">
+                        <barButtonItem key="leftBarButtonItem" title="Sign out" style="plain" id="aat-1u-U2l"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="dot.circle" catalog="system" id="q0S-yR-aWA">
                             <connections>
                                 <action selector="profileBtnPressed:" destination="KkA-kr-ZXv" id="f54-0L-J1R"/>
@@ -166,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="raZ-uz-Vns">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="raZ-uz-Vns">
                                 <rect key="frame" x="87" y="89" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -208,6 +209,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qI-aa-kHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3089.8550724637685" y="-166.07142857142856"/>
+        </scene>
+        <!--Profile Photo View Vc-->
+        <scene sceneID="BE2-t6-Bp9">
+            <objects>
+                <viewController storyboardIdentifier="profilePhotoViewPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e5c-Xc-HEt" customClass="ProfilePhotoViewVc" customModule="SignUpSignIn_Practise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n1e-d7-lqb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-Fs-bHz">
+                                <rect key="frame" x="144" y="760" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="ProfilePhotoChangeBtnPressed:" destination="e5c-Xc-HEt" eventType="touchUpInside" id="6kC-if-FCh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="to9-4l-ldS">
+                                <rect key="frame" x="150" y="44" width="131" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vaH-y1-UNF">
+                                <rect key="frame" x="0.0" y="84" width="414" height="614"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fNR-EI-5kR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageArea" destination="vaH-y1-UNF" id="BIj-RX-CYW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DYv-8s-Kyq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4011.594202898551" y="-166.07142857142856"/>
         </scene>
         <!--Sign Up Vc-->
         <scene sceneID="Z1m-W2-hxc">

@@ -16,7 +16,7 @@ class HomeVc: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print(email!)
+        print(email)
         apiCall()
     }
     
@@ -47,7 +47,8 @@ class HomeVc: UIViewController {
     }
     
     func apiCall(){
-        let url = URL(string: "https://hn.algolia.com/api/v1/search?tags=front_page")!
+//        let url = URL(string: "https://hn.algolia.com/api/v1/search?tags=front_page")!
+        let url = URL(string: "https://hubblesite.org/api/v3/news?page=all")!
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
             print(response)

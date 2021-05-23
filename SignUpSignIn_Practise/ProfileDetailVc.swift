@@ -18,17 +18,37 @@ class ProfileDetailVc: UIViewController {
     @IBOutlet weak var userMobileNoTextArea: UILabel!
     
     var email: String?
+    var data = [UserDetails]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let data = loadDetails(emailValue: email!)
+        data = loadDetails(emailValue: email!)
 
         profileImageArea.layer.cornerRadius = profileImageArea.frame.height/2
+        profileImageArea.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        profileImageArea.layer.borderWidth = 1
+        addDatasInTextFields()
+        addTapGestureForProfile()
+    }
+    
+    func addTapGestureForProfile(){
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        profileImageArea.isUserInteractionEnabled = true
+        profileImageArea.addGestureRecognizer(gesture)
+    }
+    
+    @objc func profileTapped(){
+        print("Profile tapped")
+        let vc = storyboard?.instantiateViewController(identifier: "profilePhotoViewPage") as! ProfilePhotoViewVc
+        vc.image = UIImage(data: data[0].profilePhoto!)!
+        vc.email = data[0].userEmail
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func addDatasInTextFields(){
         userNameTextArea.text = data[0].userName
         userEmailTextArea.text = data[0].userEmail
         userMobileNoTextArea.text = String(data[0].userMobileNumber)
         profileImageArea.image = UIImage(data: data[0].profilePhoto!)
-        
-        
     }
     
     func loadDetails(emailValue: String) -> [UserDetails]{

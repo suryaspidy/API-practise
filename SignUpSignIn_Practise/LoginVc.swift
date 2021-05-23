@@ -15,9 +15,14 @@ class LoginVc: UIViewController {
     @IBOutlet weak var loginEmailTextArea: UITextField!
     @IBOutlet weak var loginPasswordTextArea: UITextField!
     @IBOutlet weak var alertTextArea: UILabel!
+    let userIsLogged = UserDefaults.standard.string(forKey: "email")
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if userIsLogged != nil {
+            performSegue(withIdentifier: "loginSuccessfully", sender: self)
+            
+        }
     }
     
 
@@ -32,6 +37,7 @@ class LoginVc: UIViewController {
             let password = loginPasswordTextArea.text!
             let isAllowed = fetchData(email: email, password: password)
             if isAllowed{
+                UserDefaults.standard.set(email, forKey: "email")
                 performSegue(withIdentifier: "loginSuccessfully", sender: self)
             }
             else{
@@ -43,7 +49,11 @@ class LoginVc: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSuccessfully" {
             let destination = segue.destination as! HomeVc
-            destination.email = loginEmailTextArea.text
+            if userIsLogged == nil {
+                destination.email = loginEmailTextArea.text
+            } else if userIsLogged != nil {
+                destination.email = userIsLogged
+            }
         }
     }
     
