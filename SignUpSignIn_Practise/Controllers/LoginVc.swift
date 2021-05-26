@@ -8,9 +8,17 @@
 import UIKit
 import CoreData
 
+enum LoginAlerts:String{
+    case emptyMail = "Please enter your email"
+    case emptyPwd = "Please enter your password"
+    case wrongInformations = "Check your email or password"
+}
+
 class LoginVc: UIViewController {
 
     
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var loginBtn: UIButton!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var loginEmailTextArea: UITextField!
     @IBOutlet weak var loginPasswordTextArea: UITextField!
@@ -19,19 +27,32 @@ class LoginVc: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        customDesigns()
         if userIsLogged != nil {
             performSegue(withIdentifier: "loginSuccessfully", sender: self)
             
+            
         }
     }
+    
+    func customDesigns(){
+        navigationController?.navigationBar.isHidden = true
+        loginBtn.layer.cornerRadius = loginBtn.frame.height/2
+        mainView.clipsToBounds = true
+        mainView.layer.cornerRadius = view.frame.width/8
+        mainView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        
+    }
+    
+    
     
 
     @IBAction func loginDoneBtnPressed(_ sender: UIButton) {
         alertTextArea.text = ""
         if loginEmailTextArea.text!.isEmpty{
-            alertTextArea.text = "Please enter your email"
+            alertTextArea.text = LoginAlerts.emptyMail.rawValue
         } else if loginPasswordTextArea.text!.isEmpty {
-            alertTextArea.text = "Please enter your password"
+            alertTextArea.text = LoginAlerts.emptyPwd.rawValue
         } else if loginEmailTextArea.text?.isEmpty == false && loginPasswordTextArea.text?.isEmpty == false{
             let email = loginEmailTextArea.text!
             let password = loginPasswordTextArea.text!
@@ -41,7 +62,7 @@ class LoginVc: UIViewController {
                 performSegue(withIdentifier: "loginSuccessfully", sender: self)
             }
             else{
-                alertTextArea.text = "Check your email or password"
+                alertTextArea.text = LoginAlerts.wrongInformations.rawValue
             }
         }
     }

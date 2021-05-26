@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if userIsLogged != nil {
             let homeVc = storyBoard.instantiateViewController(identifier: "homePage")
-            print("USER ALLOWED")
+        }
+        else{
+            let homeVc = storyBoard.instantiateViewController(identifier: "loginPage")
         }
         return true
     }

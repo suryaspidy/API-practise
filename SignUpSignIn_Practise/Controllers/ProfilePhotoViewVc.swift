@@ -10,6 +10,8 @@ import CoreData
 
 class ProfilePhotoViewVc: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    var imageUpdate: ((_ isUpdate: Bool) -> Void)?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var image:UIImage =  UIImage()
     var email: String?
@@ -22,7 +24,6 @@ class ProfilePhotoViewVc: UIViewController, UIImagePickerControllerDelegate & UI
         
     }
     @IBAction func ProfilePhotoChangeBtnPressed(_ sender: UIButton) {
-        print("Tapped")
         imageViewPressed()
     }
     
@@ -58,6 +59,7 @@ class ProfilePhotoViewVc: UIViewController, UIImagePickerControllerDelegate & UI
             let arr = try context.fetch(request)
             arr[0].profilePhoto = image.pngData()
             saveItems()
+            imageUpdate?(true)
             
         } catch{
             print(error)

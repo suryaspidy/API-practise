@@ -21,12 +21,12 @@ class ProfileDetailVc: UIViewController {
     var data = [UserDetails]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = loadDetails(emailValue: email!)
+        
 
         profileImageArea.layer.cornerRadius = profileImageArea.frame.height/2
         profileImageArea.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
         profileImageArea.layer.borderWidth = 1
-        addDatasInTextFields()
+        reloadImage()
         addTapGestureForProfile()
     }
     
@@ -36,11 +36,22 @@ class ProfileDetailVc: UIViewController {
         profileImageArea.addGestureRecognizer(gesture)
     }
     
+    func reloadImage(){
+        data = loadDetails(emailValue: email!)
+        addDatasInTextFields()
+    }
+    
     @objc func profileTapped(){
-        print("Profile tapped")
         let vc = storyboard?.instantiateViewController(identifier: "profilePhotoViewPage") as! ProfilePhotoViewVc
         vc.image = UIImage(data: data[0].profilePhoto!)!
         vc.email = data[0].userEmail
+        vc.imageUpdate = { [self] input in
+            if input {
+                reloadImage()
+                
+            }
+            
+        }
         present(vc, animated: true, completion: nil)
     }
     
