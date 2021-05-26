@@ -51,7 +51,7 @@ class ProfilePhotoViewVc: UIViewController, UIImagePickerControllerDelegate & UI
     
     func updateImage(image: UIImage){
         let request:NSFetchRequest<UserDetails> = UserDetails.fetchRequest()
-        let predicate = NSPredicate(format: "userEmail == %@", email as! CVarArg)
+        let predicate = NSPredicate(format: "userEmail == %@", email!)
         
         request.predicate = predicate
         

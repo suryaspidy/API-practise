@@ -42,7 +42,7 @@ class ProfileDetailVc: UIViewController {
     }
     
     @objc func profileTapped(){
-        let vc = storyboard?.instantiateViewController(identifier: "profilePhotoViewPage") as! ProfilePhotoViewVc
+        let vc = storyboard?.instantiateViewController(identifier: Constants.profilePhotoViewPageVcID) as! ProfilePhotoViewVc
         vc.image = UIImage(data: data[0].profilePhoto!)!
         vc.email = data[0].userEmail
         vc.imageUpdate = { [self] input in

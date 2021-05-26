@@ -29,7 +29,7 @@ class LoginVc: UIViewController {
 
         customDesigns()
         if userIsLogged != nil {
-            performSegue(withIdentifier: "loginSuccessfully", sender: self)
+            performSegue(withIdentifier: Constants.goToHomePageSegueID, sender: self)
             
             
         }
@@ -59,7 +59,7 @@ class LoginVc: UIViewController {
             let isAllowed = fetchData(email: email, password: password)
             if isAllowed{
                 UserDefaults.standard.set(email, forKey: "email")
-                performSegue(withIdentifier: "loginSuccessfully", sender: self)
+                performSegue(withIdentifier:  Constants.goToHomePageSegueID, sender: self)
             }
             else{
                 alertTextArea.text = LoginAlerts.wrongInformations.rawValue
@@ -68,7 +68,7 @@ class LoginVc: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginSuccessfully" {
+        if segue.identifier ==  Constants.goToHomePageSegueID {
             let destination = segue.destination as! HomeVc
             if userIsLogged == nil {
                 destination.email = loginEmailTextArea.text

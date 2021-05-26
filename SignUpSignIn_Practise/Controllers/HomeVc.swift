@@ -24,7 +24,7 @@ class HomeVc: UIViewController {
 
 //        apiCall()
         apiCallHashMapMethod()
-        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableCellID")
+        tableView.register(UINib(nibName: Constants.tableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.tableViewCellID)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -47,7 +47,8 @@ class HomeVc: UIViewController {
     }
     
     func apiCallHashMapMethod(){
-        let url = URL(string: "https://newsapi.org/v2/everything?q=tesla&from=2021-04-25&sortBy=publishedAt&apiKey=8c1077210098486f97aefcebf54b36ac")!
+        let url = URL(string: "https://newsapi.org/v2/everything?q=apple&from=2021-05-25&to=2021-05-25&sortBy=popularity&apiKey=8c1077210098486f97aefcebf54b36ac")!
+//        https://newsapi.org/v2/everything?q=tesla&from=2021-04-25&sortBy=publishedAt&apiKey=8c1077210098486f97aefcebf54b36ac
         let session = URLSession(configuration: .ephemeral)
         let task = session.dataTask(with: url) { [self] (data, response, error) in
             if error == nil{
@@ -102,10 +103,10 @@ class HomeVc: UIViewController {
     }
 
     @IBAction func profileBtnPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "goToProfilePage", sender: self)
+        performSegue(withIdentifier: Constants.goToProfilePageSegueID, sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToProfilePage" {
+        if segue.identifier == Constants.goToProfilePageSegueID {
             let destination = segue.destination as! ProfileDetailVc
             destination.email = email
         }
@@ -115,7 +116,7 @@ class HomeVc: UIViewController {
         let action1 = UIAlertAction(title: "Sign out", style: .default) { (action) in
             UserDefaults.standard.removeObject(forKey: "email")
             
-            self.performSegue(withIdentifier: "userSignOut", sender: self)
+            self.performSegue(withIdentifier: Constants.userIsSignOutSegueID, sender: self)
         }
         let action2 = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -135,9 +136,9 @@ extension HomeVc:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableCellID", for: indexPath) as! NewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.tableViewCellID, for: indexPath) as! NewsTableViewCell
         
-        let myData = articles[indexPath.row] as! [String:Any]
+//        let myData = articles[indexPath.row] as! [String:Any]
 //        cell.titleArea.text = allDatas[indexPath.row][0]
 //        cell.timeArea.text = allDatas[indexPath.row][1]
 //        cell.autherNameArea.text = allDatas[indexPath.row][3]
@@ -150,14 +151,20 @@ extension HomeVc:UITableViewDataSource{
 //                }
 //            }
 //        }
+        let data = JSONDecoderFile()
+        let answers = data.fetchData(JSON: json, rowNo: indexPath.row)
+//        cell.titleArea.text = myData["title"] as? String
+//        cell.timeArea.text = myData["publishedAt"] as? String
+//        cell.autherNameArea.text = myData["author"] as? String
+//        let img = myData["urlToImage"] as? String
         
-        cell.titleArea.text = myData["title"] as? String
-        cell.timeArea.text = myData["publishedAt"] as? String
-        cell.autherNameArea.text = myData["author"] as? String
-        let img = myData["urlToImage"] as! String
+        cell.titleArea.text = data.titleName
+        cell.timeArea.text = data.publishedTime
+        cell.autherNameArea.text = data.authorName
+        let img = data.imageUrl
         print(img)
         if img != "null" {
-            if let urlImg = URL(string: img){
+            if let urlImg = URL(string: img ?? "https://i.vimeocdn.com/portrait/1274237_300x300.jpg"){
                 if let dataOfImg = try? Data(contentsOf: urlImg){
                 cell.imageArea?.image = UIImage(data: dataOfImg)
                 }
@@ -172,10 +179,14 @@ extension HomeVc:UITableViewDataSource{
 
 extension HomeVc: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = (storyboard?.instantiateViewController(identifier: "webView"))! as WebViewVc
+        let vc = (storyboard?.instantiateViewController(identifier: Constants.webViewVcID))! as WebViewVc
 //        vc.urlStr = allDatas[indexPath.row][2]
-        let myData = articles[indexPath.row] as! [String:Any]
-        vc.urlStr = myData["url"]! as! String
+//        let myData = articles[indexPath.row] as! [String:Any]
+//        vc.urlStr = myData["url"]! as! String
+        
+        let data = JSONDecoderFile()
+        let answers = data.fetchData(JSON: json, rowNo: indexPath.row)
+        vc.urlStr = data.pageUrl
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userIsLogged = UserDefaults.standard.string(forKey: "email")
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if userIsLogged != nil {
-            let homeVc = storyBoard.instantiateViewController(identifier: "homePage")
+            let goToHomeVc = storyBoard.instantiateViewController(identifier: Constants.homePageVcID) as HomeVc
+            goToHomeVc.email = userIsLogged
+            
         }
         else{
-            let homeVc = storyBoard.instantiateViewController(identifier: "loginPage")
+            let goToLoginVc = storyBoard.instantiateViewController(identifier: Constants.loginPageVcID)
         }
         return true
     }
