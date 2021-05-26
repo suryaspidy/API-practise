@@ -53,24 +53,17 @@ class HomeVc: UIViewController {
             if error == nil{
                 if let resultData = data {
                     json = try! JSONSerialization.jsonObject(with: resultData, options: .allowFragments) as! [String : AnyObject]
+                    
                     articles = json["articles"] as! [Any]
-//                    let count = Int(json["articles"]!.count)-1
-//
-//                    for i in 0...count{
-//                        let myData = articles[i] as! [String:Any]
-//                        print(myData["author"]!)
-//                        print(myData["title"]!)
-//                        print(myData["url"]!)
-//                        print(myData["urlToImage"]!)
-//                        print(myData["publishedAt"]!)
+                    
+//                    if articles.count > 0 {
+//                        DispatchQueue.main.async {
+//                            tableView.reloadData()
+//                        }
 //                    }
-//                    DispatchQueue.main.async {
-//                        tableView.reloadData()
-//                    }
-                    if articles.count > 0 {
-                        DispatchQueue.main.async {
-                            tableView.reloadData()
-                        }
+                    
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
                     }
                     
                 }
