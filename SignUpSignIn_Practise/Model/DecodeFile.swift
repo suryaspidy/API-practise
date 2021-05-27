@@ -14,7 +14,6 @@ struct DecodeFile: Codable{
     var articles: [Article?]
 }
 
-
 struct Article: Codable{
     var author: String?
     var title: String?
@@ -22,6 +21,15 @@ struct Article: Codable{
     var publishedAt: String?
     var urlToImage: String?
 }
+
+
+//struct Article: Codable{
+//    var author: String?
+//    var title: String?
+//    var url: String?
+//    var publishedAt: String?
+//    var urlToImage: String?
+//}
 //struct Items: Codable {
 //    var title: String?
 //    var pubDate: String?
